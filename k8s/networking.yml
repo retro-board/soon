@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: todo-list
+  namespace: bugfixes
   name: soon
   annotations:
     cert-manager.io/cluster-issuer: acme-prod
@@ -13,11 +13,13 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - todo-list.app
-        - www.todo-list.app
-      secretName: todo-list-soon
+        - bugfix.es
+        - www.bugfix.es
+        - bugfixes.dev
+        - www.bugfixes.dev
+      secretName: bugfixes-soon
   rules:
-    - host: todo-list.app
+    - host: bugfix.es
       http:
         paths:
           - backend:
@@ -27,7 +29,27 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-    - host: www.todo-list.app
+    - host: www.bugfix.es
+      http:
+        paths:
+          - backend:
+              service:
+                name: soon
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+    - host: www.bugfixes.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: soon
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+    - host: www.bugfixes.dev
       http:
         paths:
           - backend:

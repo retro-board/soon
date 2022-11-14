@@ -13,13 +13,11 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - bugfix.es
-        - www.bugfix.es
-        - bugfixes.dev
-        - www.bugfixes.dev
+        - retro-board.it
+        - www.retro-board.it
       secretName: bugfixes-soon
   rules:
-    - host: bugfix.es
+    - host: retro-board.it
       http:
         paths:
           - backend:
@@ -29,27 +27,7 @@ spec:
                   number: 80
             path: /
             pathType: Prefix
-    - host: www.bugfix.es
-      http:
-        paths:
-          - backend:
-              service:
-                name: soon
-                port:
-                  number: 80
-            path: /
-            pathType: Prefix
-    - host: www.bugfixes.dev
-      http:
-        paths:
-          - backend:
-              service:
-                name: soon
-                port:
-                  number: 80
-            path: /
-            pathType: Prefix
-    - host: www.bugfixes.dev
+    - host: www.retro-board.it
       http:
         paths:
           - backend:
